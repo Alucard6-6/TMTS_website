@@ -245,7 +245,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         fc=extsymR*nisoRmodel/(extsymRmodel*nisoR)
         Lmodelfinal=fc*float(Lcmodel)
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
-    return TMTSmodel
+    return TMTSmodel, extsymR, fc,Lmodelfinal
 
 
 def matchreaction_recomb(Rsmiles,Psmile):
@@ -531,7 +531,7 @@ def refiningarrhenius(TMTSmodel,Rsmiles,Psmiles,path,cycle):
         fc=fc*Lmodelfinal
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
         
-    return TMTSmodel
+    return TMTSmodel, isomersextsym ,fc, Lmodelfinal
 
 def symfromsmi(smiles):
     """
@@ -1307,7 +1307,7 @@ def addnewkinetic(dicofreactions):
     Parameters
     ----------
     dicofreactions : TYPE dic
-        DESCRIPTION. dictionaryof reactions as the ones from cleanandclassify function, in the format:
+        DESCRIPTION. dictionary of reactions as the ones from cleanandclassify function, in the format:
             {'C8H18-1=>R4CH3+R34C7H15': [['C(C)(C)(C)CC(C)C'], ['[CH3]', '[C](C)(C)CC(C)C'], '1/recombCH'],..}
 
     Returns
