@@ -176,7 +176,9 @@ SYSTEME = platform.system()
 if SYSTEME == "Windows": #si utilisation locale sur mon pc
     PATH_PLATON = "C:/pwt/platon.exe" 
 else:
-    PATH_PLATON = "./bin/platon" #sur le site streamlit
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    PATH_PLATON = os.path.join(base_dir, "bin", "platon")
+    
     if os.path.exists(PATH_PLATON):
         os.chmod(PATH_PLATON, 0o755)
 
