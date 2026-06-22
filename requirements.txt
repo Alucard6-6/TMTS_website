@@ -2,8 +2,6 @@ streamlit==1.22.0
 numpy
 streamlit_ketcher
 rdkit==2023.03.1
-gfortran
-
 #rdkit.Chem
 #anytree
 #os
