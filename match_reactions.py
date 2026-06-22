@@ -245,7 +245,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         fc=extsymR*nisoRmodel/(extsymRmodel*nisoR)
         Lmodelfinal=fc*float(Lcmodel)
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
-    return TMTSmodel, extsymR, fc,Lmodelfinal
+    return TMTSmodel, fc,Lmodelfinal
 
 
 def matchreaction_recomb(Rsmiles,Psmile):
@@ -531,7 +531,7 @@ def refiningarrhenius(TMTSmodel,Rsmiles,Psmiles,path,cycle):
         fc=fc*Lmodelfinal
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
         
-    return TMTSmodel, isomersextsym ,fc, Lmodelfinal
+    return TMTSmodel, fc, Lmodelfinal
 
 def symfromsmi(smiles):
     """
