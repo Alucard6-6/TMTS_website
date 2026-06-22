@@ -3,7 +3,7 @@ numpy
 streamlit_ketcher
 rdkit==2023.03.1
 #rdkit.Chem
-#anytree
+anytree
 #os
 #subprocess
 #copy
