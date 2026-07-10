@@ -585,17 +585,17 @@ def symfromsmi(smiles):
     # output2, errors = proc.communicate(input="NONSYM\nexit\n")           
 
 def foundsym(filename):
-    symmetry = "C1"
-    # symfile = open(filename, "r")
-    # text = symfile.read()
-    # lines = text.splitlines()
-    # for i in range(0, len(lines)):
-    #     if lines[i][0:6] == "Resd #":
-    #         data = lines[i+2].split()
-    #         tol = float(data[9])
-    #         if tol == 0.1:
-    #             symmetry = str(data[6])
-    # symfile.close()
+    # symmetry = "C1"
+    symfile = open(filename, "r")
+    text = symfile.read()
+    lines = text.splitlines()
+    for i in range(0, len(lines)):
+        if lines[i][0:6] == "Resd #":
+            data = lines[i+2].split()
+            tol = float(data[9])
+            if tol == 0.1:
+                symmetry = str(data[6])
+    symfile.close()
     return symmetry
 
 def tradsym(symmetry):
