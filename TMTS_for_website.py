@@ -95,8 +95,11 @@ if run_match and reaction_ok:
     arr_dic=addnewkinetic(detailed_dic_reaction)
     print(arr_dic, "arr_dic")
     if len(arr_dic)>0:
-        model=list(arr_dic["Target"][3][0].keys())[0]
-        A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
+        #model=list(arr_dic["Target"][3][0].keys())[0]
+        
+        #A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
+        A, n, Ea, Lc = list(arr_dic['Target'][3][0][0].values())[0]
+
         #fc, LC = arr_dic["Target"][3][0][model][3],arr_dic["Target"][3][0][model][4]
         #st.write('Read the reaction in the format of a dictionary:',detailed_dic_reaction)
         st.write('The Arrhenius parameters for this reaction fitted between 500 and 2000K are (in cal, mol,s units):')
