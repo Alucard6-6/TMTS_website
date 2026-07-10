@@ -175,26 +175,27 @@ SYSTEME = platform.system()
 if SYSTEME == "Windows": #si utilisation locale sur mon pc
     PATH_PLATON = "C:/pwt/platon.exe" 
 else:
-    PATH_PLATON = "./platon"
+    PATH_PLATON = "/tmp/platon"
     # base_dir = os.path.dirname(os.path.abspath(__file__))
     # PATH_PLATON = os.path.join(base_dir, "platon")
     if not os.path.exists(PATH_PLATON) and os.path.exists("platon.f"):
         try:
-            print("Compilation de PLATON en cours sur le serveur Linux...")
-            # On compile sans l'affichage graphique (-DNO_X11) pour éviter tout besoin de serveurs graphiques virtuels
+            print("Compilation de PLATON en cours vers /tmp...")
+            # On demande à gfortran d'écrire le binaire de sortie directement dans /tmp/platon
             subprocess.run(
                 [
                     "gfortran",
                     "-o",
-                    "platon",
+                    PATH_PLATON,  # Écrit directement dans /tmp/platon
                     "platon.f",
                     "xdrvr.c",
                     "-DNO_X11",
                 ],
                 check=True,
             )
+            # On donne les droits d'exécution dans /tmp
             os.chmod(PATH_PLATON, 0o755)
-            print("Compilation de PLATON réussie !")
+            print("Compilation et configuration de PLATON réussies dans /tmp !")
         except Exception as e:
             print(f"Échec de la compilation automatique : {e}")
     # if os.path.exists(PATH_PLATON):
