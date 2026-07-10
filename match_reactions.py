@@ -175,8 +175,9 @@ SYSTEME = platform.system()
 if SYSTEME == "Windows": #si utilisation locale sur mon pc
     PATH_PLATON = "C:/pwt/platon.exe" 
 else:
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    PATH_PLATON = os.path.join(base_dir, "platon")
+    PATH_PLATON = "./platon"
+    # base_dir = os.path.dirname(os.path.abspath(__file__))
+    # PATH_PLATON = os.path.join(base_dir, "platon")
     
     if os.path.exists(PATH_PLATON):
         os.chmod(PATH_PLATON, 0o755)
@@ -184,7 +185,7 @@ else:
 def callplatonsym(pdb_path):
     """Lance PLATON en mode batch (-k) pour générer le fichier .lis""" #(k-) = n'ouvre pas le GUI
     try:
-        subprocess.run([PATH_PLATON, "-k", pdb_path], capture_output=True, text=True, check=True)
+        subprocess.run([PATH_PLATON, "-k", pdb_path], input="\n", capture_output=True, text=True, check=True)
         lis_path = pdb_path.replace(".pdb", ".lis")
 
         if os.path.exists(lis_path):
