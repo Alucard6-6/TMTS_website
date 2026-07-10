@@ -1336,17 +1336,14 @@ def addnewkinetic(dicofreactions):
                 nBS+=1
                 print(arrhenius, "arrhenius")
                 for model in arrhenius:
-                    for m in model:
-                        model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
-                    # for m in model: # m est ici ton dictionnaire (ex: {'CH3': [A, n, Ea]})
-                    #     for key in m: # key est la clé de ton dictionnaire (ex: 'CH3')
-                    #         # On extrait la liste associée à la clé
-                    #         param_list = list(m[key]) 
-                    #         # On modifie le 3ème élément (Ea) en le multipliant par 1000
-                    #         param_list[2] = str(float(param_list[2]) * 1000)
-                    #         # On réassigne la liste modifiée dans le dictionnaire
-                    #         m[key] = param_list
-                    #         print(m[key])
+                    dictionnaire_reaction = model[0] # On cible direct le dictionnaire à l'index 0
+                    for key in dictionnaire_reaction:
+                        param_list = list(dictionnaire_reaction[key])
+                        param_list[2] = str(float(param_list[2]) * 1000)
+                        dictionnaire_reaction[key] = param_list
+                    # for m in model:
+                    #     model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
+                    
                 updateddic[reaction]=dicofreactions[reaction]
                 updateddic[reaction].append(arrhenius)
         elif typeofreaction=="1/BSCH":
@@ -1354,16 +1351,15 @@ def addnewkinetic(dicofreactions):
             if arrhenius!=None:
                 nBS+=1
                 for model in arrhenius:
-                    for m in model:
+                    dictionnaire_reaction = model[0]
+                    for key in dictionnaire_reaction:
+                        param_list = list(dictionnaire_reaction[key])
+                        param_list[2] = str(float(param_list[2]) * 1000)
+                        dictionnaire_reaction[key] = param_list
+                    # for m in model:
                         #model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
                     
-                        for key in m: # key est la clé de ton dictionnaire (ex: 'CH3')
-                            # On extrait la liste associée à la clé
-                            param_list = list(m[key]) 
-                            # On modifie le 3ème élément (Ea) en le multipliant par 1000
-                            param_list[2] = str(float(param_list[2]) * 1000)
-                            # On réassigne la liste modifiée dans le dictionnaire
-                            m[key] = param_list
+                    
                 updateddic[reaction]=dicofreactions[reaction]
                 updateddic[reaction].append(arrhenius)
         elif typeofreaction =="recombCH":
@@ -1383,15 +1379,14 @@ def addnewkinetic(dicofreactions):
             arrhenius=matchreaction_Habs(dicofreactions[reaction][0],dicofreactions[reaction][1])
             if arrhenius!=None:
                 for model in arrhenius:
-                    for m in model:
+                    dictionnaire_reaction = model[0]
+                    for key in dictionnaire_reaction:
+                        param_list = list(dictionnaire_reaction[key])
+                        param_list[2] = str(float(param_list[2]) * 1000)
+                        dictionnaire_reaction[key] = param_list
+                    # for m in model:
                        # model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
-                       for key in m: # key est la clé de ton dictionnaire (ex: 'CH3')
-                           # On extrait la liste associée à la clé
-                           param_list = list(m[key]) 
-                           # On modifie le 3ème élément (Ea) en le multipliant par 1000
-                           param_list[2] = str(float(param_list[2]) * 1000)
-                           # On réassigne la liste modifiée dans le dictionnaire
-                           m[key] = param_list
+                      
                 updateddic[reaction]=dicofreactions[reaction]
                 updateddic[reaction].append(arrhenius)
     # print("niso:",niso)
