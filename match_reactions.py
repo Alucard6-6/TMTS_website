@@ -178,9 +178,27 @@ else:
     PATH_PLATON = "./platon"
     # base_dir = os.path.dirname(os.path.abspath(__file__))
     # PATH_PLATON = os.path.join(base_dir, "platon")
-    
-    if os.path.exists(PATH_PLATON):
-        os.chmod(PATH_PLATON, 0o755)
+    if not os.path.exists(PATH_PLATON) and os.path.exists("platon.f"):
+        try:
+            print("Compilation de PLATON en cours sur le serveur Linux...")
+            # On compile sans l'affichage graphique (-DNO_X11) pour éviter tout besoin de serveurs graphiques virtuels
+            subprocess.run(
+                [
+                    "gfortran",
+                    "-o",
+                    "platon",
+                    "platon.f",
+                    "xdrvr.c",
+                    "-DNO_X11",
+                ],
+                check=True,
+            )
+            os.chmod(PATH_PLATON, 0o755)
+            print("Compilation de PLATON réussie !")
+        except Exception as e:
+            print(f"Échec de la compilation automatique : {e}")
+    # if os.path.exists(PATH_PLATON):
+    #     os.chmod(PATH_PLATON, 0o755)
 
 def callplatonsym(pdb_path):
     """Lance PLATON en mode batch (-k) pour générer le fichier .lis""" #(k-) = n'ouvre pas le GUI
