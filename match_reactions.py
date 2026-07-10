@@ -212,7 +212,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
     lis_path = f"./sym_{session_id}.lis"
      
     for model in TMTSmodel:
-        print(model)
+        print(model, Rsmiles)
         Lcmodel=TMTSmodel[model][-1]
         fc=1/float(Lcmodel)
         Rmodel,Pmodels=model.split(">>")
