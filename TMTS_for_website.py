@@ -18,7 +18,7 @@ Created on Mon Apr 20 11:36:24 2026
 # from rdkit.Chem.rdMolDescriptors import CalcNumAtomStereoCenters
 import streamlit as st
 from streamlit_ketcher import st_ketcher
-
+import os
 ################################################################################
 #### Rate constants estimations using TMTS approach#############################
 ################################################################################
@@ -39,6 +39,13 @@ st.write(':newspaper: [Beta-scissions](https://linkinghub.elsevier.com/retrieve/
 
 st.write("----------------------------------------------------------")
 #st.image('Image2.JPG',width=500)
+
+st.write("### 🔍 Diagnostic du serveur Linux :")
+st.write(f"Dossier actuel de travail : `{os.getcwd()}`")
+
+# Liste les fichiers présents à la racine du site
+fichiers_racine = os.listdir(os.getcwd())
+st.write("Fichiers trouvés à la racine :", fichiers_racine)
 
 ################################################################################
 ####################Second step: retrieving the smiles##########################
