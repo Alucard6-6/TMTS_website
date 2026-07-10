@@ -170,7 +170,7 @@ def findmatchBS(typeofBS,radicalP,alkeneP,reactant):
     else:
         return None,0
     
-    
+print("Fichiers à la racine :", os.listdir(os.getcwd()))
 SYSTEME = platform.system()
 if SYSTEME == "Windows": #si utilisation locale sur mon pc
     PATH_PLATON = "C:/pwt/platon.exe" 
