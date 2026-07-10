@@ -98,7 +98,7 @@ if run_match and reaction_ok:
         #model=list(arr_dic["Target"][3][0].keys())[0]
         
         #A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
-        A, n, Ea, Lc = list(arr_dic['Target'][3][0][0].values())[0]
+        A, n, Ea, Lc = list(arr_dic['Taret'][3][0][0].values())[0]
 
        
         #st.write('Read the reaction in the format of a dictionary:',detailed_dic_reaction)

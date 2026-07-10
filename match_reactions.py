@@ -218,6 +218,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         Rmodel,Pmodels=model.split(">>")
         RmodelMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rmodel)))
         nisoRmodel=CalcNumAtomStereoCenters(RmodelMol)+1
+        print("nisormodel:", nisoRmodel)
         m3= Chem.AddHs(RmodelMol)
         AllChem.EmbedMolecule(m3) 
         AllChem.MMFFOptimizeMolecule(m3)
@@ -229,6 +230,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         if os.path.exists(lis_path): os.remove(lis_path)
         RMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rsmiles)))
         nisoR=CalcNumAtomStereoCenters(RMol)+1
+        print("nisor:", nisoR)
         m3R= Chem.AddHs(RMol)
         AllChem.EmbedMolecule(m3R) 
         AllChem.MMFFOptimizeMolecule(m3R)
