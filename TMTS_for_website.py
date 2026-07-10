@@ -91,6 +91,7 @@ reaction_ok=check_reaction(dic_reaction)
 
 if run_match and reaction_ok:
     detailed_dic_reaction=cleanandclassify(dic_reaction)
+    print(detailed_dic_reaction)
     arr_dic=addnewkinetic(detailed_dic_reaction)
     if len(arr_dic)>0:
         model=list(arr_dic["Target"][3][0].keys())[0]
