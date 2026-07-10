@@ -176,7 +176,7 @@ if SYSTEME == "Windows": #si utilisation locale sur mon pc
     PATH_PLATON = "C:/pwt/platon.exe" 
 else:
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    PATH_PLATON = os.path.join(base_dir, "bin", "platon")
+    PATH_PLATON = os.path.join(base_dir, "platon")
     
     if os.path.exists(PATH_PLATON):
         os.chmod(PATH_PLATON, 0o755)
@@ -185,10 +185,27 @@ def callplatonsym(pdb_path):
     """Lance PLATON en mode batch (-k) pour générer le fichier .lis""" #(k-) = n'ouvre pas le GUI
     try:
         subprocess.run([PATH_PLATON, "-k", pdb_path], capture_output=True, text=True, check=True)
+        lis_path = pdb_path.replace(".pdb", ".lis")
+
+        if os.path.exists(lis_path):
+            with open(lis_path, "r", encoding="utf-8", errors="ignore") as f:
+                return f.read()
+        else:
+            st.error("Le fichier de sortie .lis n'a pas été trouvé.")
+            return None
+
     except subprocess.CalledProcessError as e:
         st.error(f"PLATON execution error: {e.stderr}")
+        return None
     except Exception as e:
         st.error(f"Unable to launch PLATON: {e}")
+        return None
+        
+        
+    # except subprocess.CalledProcessError as e:
+    #     st.error(f"PLATON execution error: {e.stderr}")
+    # except Exception as e:
+    #     st.error(f"Unable to launch PLATON: {e}")
     
 def refiningarrheniusBS(TMTSmodel,Rsmiles):
     """
