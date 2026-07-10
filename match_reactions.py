@@ -1335,17 +1335,17 @@ def addnewkinetic(dicofreactions):
             if arrhenius!=None:
                 nBS+=1
                 for model in arrhenius:
-                    #for m in model:
-                    #    model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
-                    for m in model: # m est ici ton dictionnaire (ex: {'CH3': [A, n, Ea]})
-                        for key in m: # key est la clé de ton dictionnaire (ex: 'CH3')
-                            # On extrait la liste associée à la clé
-                            param_list = list(m[key]) 
-                            # On modifie le 3ème élément (Ea) en le multipliant par 1000
-                            param_list[2] = str(float(param_list[2]) * 1000)
-                            # On réassigne la liste modifiée dans le dictionnaire
-                            m[key] = param_list
-                    
+                    for m in model:
+                        model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
+                    # for m in model: # m est ici ton dictionnaire (ex: {'CH3': [A, n, Ea]})
+                    #     for key in m: # key est la clé de ton dictionnaire (ex: 'CH3')
+                    #         # On extrait la liste associée à la clé
+                    #         param_list = list(m[key]) 
+                    #         # On modifie le 3ème élément (Ea) en le multipliant par 1000
+                    #         param_list[2] = str(float(param_list[2]) * 1000)
+                    #         # On réassigne la liste modifiée dans le dictionnaire
+                    #         m[key] = param_list
+                    #         print(m[key])
                 updateddic[reaction]=dicofreactions[reaction]
                 updateddic[reaction].append(arrhenius)
         elif typeofreaction=="1/BSCH":
