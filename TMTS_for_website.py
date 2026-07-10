@@ -99,13 +99,13 @@ reaction_ok=check_reaction(dic_reaction)
 if run_match and reaction_ok:
     detailed_dic_reaction=cleanandclassify(dic_reaction)
     print("ok", detailed_dic_reaction)
-    arr_dic=addnewkinetic(detailed_dic_reaction)
+    arr_dic, fc, LCmodel, extsymR=addnewkinetic(detailed_dic_reaction)
     print(arr_dic, "arr_dic")
     if len(arr_dic)>0:
-        #model=list(arr_dic["Target"][3][0].keys())[0]
+        model=list(arr_dic["Target"][3][0].keys())[0]
         
-        #A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
-        A, n, Ea, Lc = list(arr_dic['Taret'][3][0][0].values())[0]
+        A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
+        #A, n, Ea, Lc = list(arr_dic['Taret'][3][0][0].values())[0]
 
        
         #st.write('Read the reaction in the format of a dictionary:',detailed_dic_reaction)
@@ -115,16 +115,16 @@ if run_match and reaction_ok:
             st.write('Pre-exponential parameter:')
             st.write('n parameter:')    
             st.write('Activation energy:')
-            #♣st.write('Extsym:')
-            #st.write('fc:')
-            #st.write('Lc:')
+            st.write('ExtsymR:')
+            st.write('fc:')
+            st.write('Lc:')
         with res2:
             st.write(f'{A}')
             st.write(f'{n}')    
             st.write(f'{Ea}')
-            #st.write(f'{extsym}')
-           #st.write(f'{fc}')
-            #st.write(f'{LC}')
+            st.write(f'{extsymR}')
+            st.write(f'{fc}')
+            st.write(f'{LCmodel}')
     else:
         st.write("We are sorry, but this reaction is not covered by our database")
         why_not_covered=st.button('Want to know why?')
