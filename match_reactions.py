@@ -223,6 +223,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         rdmolfiles.MolToPDBFile(m3, pdb_path, flavor=16)
         callplatonsym(pdb_path)
         extsymRmodel = tradsym(foundsym(lis_path))
+        print(extsymRmodel, "extsymRmodel refining Arr")
         if os.path.exists(pdb_path): os.remove(pdb_path)
         if os.path.exists(lis_path): os.remove(lis_path)
         RMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rsmiles)))
@@ -240,10 +241,14 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
             f.write(textinputcorrige)
         callplatonsym(pdb_path)
         extsymR = tradsym(foundsym(lis_path))
+        print(extsymR, "extsymR refining Arr")
         if os.path.exists(pdb_path): os.remove(pdb_path)
         if os.path.exists(lis_path): os.remove(lis_path)
         fc=extsymR*nisoRmodel/(extsymRmodel*nisoR)
+        print("fc :", fc)
+        print("LC model :", Lcmodel)
         Lmodelfinal=fc*float(Lcmodel)
+        print("LC finmodel :", Lmodelfinal)
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
     return TMTSmodel, fc,Lmodelfinal
 
@@ -1336,7 +1341,7 @@ def addnewkinetic(dicofreactions):
                 nBS+=1
                 print(arrhenius, "arrhenius")
                 for model in arrhenius:
-                    dictionnaire_reaction = model[0] # On cible direct le dictionnaire à l'index 0
+                    dictionnaire_reaction = model[0] 
                     for key in dictionnaire_reaction:
                         param_list = list(dictionnaire_reaction[key])
                         param_list[2] = str(float(param_list[2]) * 1000)
