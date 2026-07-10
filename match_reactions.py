@@ -1334,6 +1334,7 @@ def addnewkinetic(dicofreactions):
             arrhenius=matchreaction_BS(dicofreactions[reaction][0][0],dicofreactions[reaction][1])
             if arrhenius!=None:
                 nBS+=1
+                print(arrhenius, "arrhenius")
                 for model in arrhenius:
                     for m in model:
                         model[m]=[model[m][0],model[m][1],str(float(model[m][2])*1000)]
