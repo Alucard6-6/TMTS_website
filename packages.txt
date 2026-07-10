@@ -2,4 +2,5 @@ libxrender1
 libx11-6
 libxext6
 tcsh
+libgfortran5
 gfortran
