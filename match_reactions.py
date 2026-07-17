@@ -452,7 +452,7 @@ def matchreaction_iso(Rsmiles,Psmiles):
             reac, prod = reaction.split('>>')
             i+=1
             if Rsmiles == reac and Psmiles == prod:
-                Arrhenius =Arrhenius[i:i+1]
+                Arrhenius =Arrhenius[i]
     print('arr', Arrhenius)
     return Arrhenius
 
