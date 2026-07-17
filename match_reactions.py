@@ -549,15 +549,15 @@ def symfromsmi(smiles):
 def callplatonsym():
     try:
             # Vérifier que l'exécutable existe
-            if not os.path.exists("./platon (1)"):
+            if not os.path.exists("./platon(1)"):
                 print("The platon executable cannot be found")
             else:
                 # Rendre exécutable
-                os.chmod("./platon (1)", 0o755)
+                os.chmod("./platon(1)", 0o755)
                 
                 # Exécuter
                 result = sub.run(
-                    ["./platon (1)"],
+                    ["./platon(1)"],
                     capture_output=True,
                     text=True,
                     timeout=60
