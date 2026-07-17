@@ -425,6 +425,7 @@ def matchreaction_iso(Rsmiles,Psmiles):
         /!\ if no pathway is identified, then a None will be returned
     """
     pathways,cs= cyclesize(Rsmiles,Psmiles)
+    print(cs)
     # print(pathways)
     # print(cs)
     #check if it was possible to find a pathway and a cyclesize:
