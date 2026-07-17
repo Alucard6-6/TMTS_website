@@ -195,8 +195,8 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         AllChem.EmbedMolecule(m3) 
         AllChem.MMFFOptimizeMolecule(m3)
         rdmolfiles.MolToPDBFile(m3,"sym.pdb",flavor=16)
-        callplatonsym()
-        extsymRmodel=tradsym(foundsym("sym.lis"))
+        symlis=callplatonsym()
+        extsymRmodel=tradsym(foundsym(symlis))
         RMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rsmiles)))
         nisoR=CalcNumAtomStereoCenters(RMol)+1
         m3R= Chem.AddHs(RMol)
@@ -215,8 +215,8 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         textfinal=textfinal.replace(" H"," F")
         file = open("sym.pdb","w")
         file.write(textfinal)
-        callplatonsym()
-        extsymR=tradsym(foundsym("sym.lis"))
+        symlis=callplatonsym()
+        extsymR=tradsym(foundsym(symlis))
         fc=extsymR*nisoRmodel/(extsymRmodel*nisoR)
         Lmodelfinal=fc*float(Lcmodel)
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
