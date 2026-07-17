@@ -591,7 +591,7 @@ def callplatonsym():
             # Lire le fichier
             with open("sym.lis", "r") as f:
                 contenu = f.read()
-    return f
+    # return f
     
     # newpath = "\mount\src\tmts_website2"
     # os.chdir(newpath)
