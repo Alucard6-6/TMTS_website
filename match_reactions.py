@@ -252,6 +252,7 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         fc=extsymR*nisoRmodel/(extsymRmodel*nisoR)
         Lmodelfinal=fc*float(Lcmodel)
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
+        print(TMTSmodel, "TMTS")
     return TMTSmodel
 
 
