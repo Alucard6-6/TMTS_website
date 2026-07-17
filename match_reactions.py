@@ -566,41 +566,19 @@ def callplatonsym():
             proc = sub.Popen(["./platon(1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, text=True)
             output2, errors = proc.communicate(input="NONSYM\nexit\n")
             stdout, stderr = proc.communicate(input="\n")
-            # return output2
-            # # Exécuter
-            # result = sub.run(
-            #     ["./platon(1)","sym.pdb"],
-            #     capture_output=True,
-            #     text=True,
-            #     timeout=60
-            # )
-    
-            # if proc.returncode == 0:
-            #     # st.success("Calculation complete !")
-            #     resultat_ok = 1
-                # Lire les résultats
-                #if os.path.exists(RESULT_FILE):
-                #    with open(RESULT_FILE, "r") as f:
-                #        st.download_button(
-                #            "📥 Télécharger résultats",
-                #            f.read(),
-                #            RESULT_FILE
-                #        )
-            # else:
-            #    print(f"Error in the calculation : {proc.stderr}")
-                
+            # return 
     except Exception as e:
         print(f"Exception : {e}")
     
     # if resultat_ok == 1:
-    if True:
-    #st.success("✅ Calcul terminé !")
+    # if True:
+    # #st.success("✅ Calcul terminé !")
         
-        if os.path.exists("sym.lis"):
-            # Lire le fichier
-            with open("sym.lis", "r") as f:
-                contenu = f.read()
-            return contenu
+    #     if os.path.exists("sym.lis"):
+    #         # Lire le fichier
+    #         with open("sym.lis", "r") as f:
+    #             contenu = f.read()
+            # return contenu
     # return None
     
     # newpath = "\mount\src\tmts_website2"
