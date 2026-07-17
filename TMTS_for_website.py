@@ -18,7 +18,7 @@ Created on Mon Apr 20 11:36:24 2026
 # from rdkit.Chem.rdMolDescriptors import CalcNumAtomStereoCenters
 import streamlit as st
 from streamlit_ketcher import st_ketcher
-import os
+
 ################################################################################
 #### Rate constants estimations using TMTS approach#############################
 ################################################################################
@@ -39,13 +39,6 @@ st.write(':newspaper: [Beta-scissions](https://linkinghub.elsevier.com/retrieve/
 
 st.write("----------------------------------------------------------")
 #st.image('Image2.JPG',width=500)
-
-st.write("### 🔍 Diagnostic du serveur Linux :")
-st.write(f"Dossier actuel de travail : `{os.getcwd()}`")
-
-# Liste les fichiers présents à la racine du site
-fichiers_racine = os.listdir(os.getcwd())
-st.write("Fichiers trouvés à la racine :", fichiers_racine)
 
 ################################################################################
 ####################Second step: retrieving the smiles##########################
@@ -98,33 +91,25 @@ reaction_ok=check_reaction(dic_reaction)
 
 if run_match and reaction_ok:
     detailed_dic_reaction=cleanandclassify(dic_reaction)
-    print("ok", detailed_dic_reaction)
-    arr_dic, fc, LCmodel, extsymR=addnewkinetic(detailed_dic_reaction)
-    print(arr_dic, "arr_dic")
+    arr_dic, extsymtest=addnewkinetic(detailed_dic_reaction)
     if len(arr_dic)>0:
         model=list(arr_dic["Target"][3][0].keys())[0]
-        
         A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
-        #A, n, Ea, Lc = list(arr_dic['Taret'][3][0][0].values())[0]
-
-       
         #st.write('Read the reaction in the format of a dictionary:',detailed_dic_reaction)
-        st.write('The Arrhenius parameters for this reaction fitted between 500 and 2000K are (in cal, mol,s units):')
+        st.write('The Arrhenius parameters for this reaction fitted between 500 and 2000K are (in cal, mol, s units):')
         res1,res2=st.columns(2)
         with res1:
             st.write('Pre-exponential parameter:')
             st.write('n parameter:')    
             st.write('Activation energy:')
-            st.write('ExtsymR:')
-            st.write('fc:')
-            st.write('Lc:')
+            #st.write('External symmetry:')
+            st.write('External symmetry (CCCCC):')
         with res2:
             st.write(f'{A}')
-            st.write(f'{n}')    
+            st.write(f'{n}')
             st.write(f'{Ea}')
-            st.write(f'{extsymR}')
-            st.write(f'{fc}')
-            st.write(f'{LCmodel}')
+            #st.write(f'{extsym}')
+            st.write(f'{extsymtest}')
     else:
         st.write("We are sorry, but this reaction is not covered by our database")
         why_not_covered=st.button('Want to know why?')
@@ -134,8 +119,3 @@ elif run_match and reaction_ok==False:
     st.write('We could not find the SMILES for your reaction :sob:')
     st.write ('Please verify the SMILES, it may be wrong :sweat_smile:')
     
-
-
-
-
-
