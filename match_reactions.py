@@ -548,35 +548,37 @@ def symfromsmi(smiles):
     
 def callplatonsym():
     try:
-            # Vérifier que l'exécutable existe
-            if not os.path.exists("./platon(1)"):
-                print("The platon executable cannot be found")
+        # Vérifier que l'exécutable existe
+        if not os.path.exists("./platon(1)"):
+            print("The platon executable cannot be found")
+        else:
+            # Rendre exécutable
+            proc = sub.Popen(["platon (1)", "-o", "sym.pdb\n"],
+                              stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
+            # os.chmod("./platon(1)", 0o755)
+            
+            # # Exécuter
+            # result = sub.run(
+            #     ["./platon(1)"],
+            #     capture_output=True,
+            #     text=True,
+            #     timeout=60
+            # )
+            
+            if proc.returncode == 0:
+                # st.success("Calculation complete !")
+                resultat_ok = 1
+                # Lire les résultats
+                #if os.path.exists(RESULT_FILE):
+                #    with open(RESULT_FILE, "r") as f:
+                #        st.download_button(
+                #            "📥 Télécharger résultats",
+                #            f.read(),
+                #            RESULT_FILE
+                #        )
             else:
-                # Rendre exécutable
-                os.chmod("./platon(1)", 0o755)
+               print(f"Error in the calculation : {proc.stderr}")
                 
-                # Exécuter
-                result = sub.run(
-                    ["./platon(1)"],
-                    capture_output=True,
-                    text=True,
-                    timeout=60
-                )
-                
-                if result.returncode == 0:
-                    # st.success("Calculation complete !")
-                    resultat_ok = 1
-                    # Lire les résultats
-                    #if os.path.exists(RESULT_FILE):
-                    #    with open(RESULT_FILE, "r") as f:
-                    #        st.download_button(
-                    #            "📥 Télécharger résultats",
-                    #            f.read(),
-                    #            RESULT_FILE
-                    #        )
-                else:
-                   print(f"Error in the calculation : {result.stderr}")
-                    
     except Exception as e:
         print(f"Exception : {e}")
     
