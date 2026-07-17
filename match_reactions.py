@@ -175,10 +175,10 @@ SYSTEME = platform.system()
 if SYSTEME == "Windows": #si utilisation locale sur mon pc
     PATH_PLATON = "C:/pwt/platon.exe" 
 else:
-    PATH_PLATON = "/tmp/platon"
+    PATH_PLATON = "/tmp/platon (1)"
     # base_dir = os.path.dirname(os.path.abspath(__file__))
     # PATH_PLATON = os.path.join(base_dir, "platon")
-    if not os.path.exists(PATH_PLATON) and os.path.exists("platon.f"):
+    if not os.path.exists(PATH_PLATON) and os.path.exists("platon (1).f"):
         try:
             print("Compilation de PLATON en cours vers /tmp...")
             # On demande à gfortran d'écrire le binaire de sortie directement dans /tmp/platon
