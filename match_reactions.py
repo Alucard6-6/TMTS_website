@@ -1480,7 +1480,7 @@ def addnewkinetic(dicofreactions):
     # # extsymtest=tradsym(foundsym(symlis))
     # callplatonsym()
     # extsymtest=tradsym(foundsym("sym.lis"))
-    
+    print(updateddic)
     return updateddic#, extsymtest
 
 RDLogger.DisableLog('rdApp.*') #this is only for avoiding RdKit warnings
