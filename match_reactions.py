@@ -195,8 +195,8 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         AllChem.EmbedMolecule(m3) 
         AllChem.MMFFOptimizeMolecule(m3)
         rdmolfiles.MolToPDBFile(m3,"sym.pdb",flavor=16)
-        callplatonsym()
-        extsymRmodel=tradsym(foundsym("sym.lis"))
+        symlis=callplatonsym()
+        extsymRmodel=tradsym(foundsym(symlis))
         RMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rsmiles)))
         nisoR=CalcNumAtomStereoCenters(RMol)+1
         m3R= Chem.AddHs(RMol)
@@ -215,8 +215,8 @@ def refiningarrheniusBS(TMTSmodel,Rsmiles):
         textfinal=textfinal.replace(" H"," F")
         file = open("sym.pdb","w")
         file.write(textfinal)
-        callplatonsym()
-        extsymR=tradsym(foundsym("sym.lis"))
+        symlis=callplatonsym()
+        extsymR=tradsym(foundsym(symlis))
         fc=extsymR*nisoRmodel/(extsymRmodel*nisoR)
         Lmodelfinal=fc*float(Lcmodel)
         TMTSmodel[model]=[str(fc*float(TMTSmodel[model][0])),TMTSmodel[model][1],TMTSmodel[model][2],str(Lmodelfinal)]
@@ -467,8 +467,8 @@ def refiningarrhenius(TMTSmodel,Rsmiles,Psmiles,path,cycle):
             textfinal=textfinal.replace(" H"," F")
             file = open("sym.pdb","w")
             file.write(textfinal)
-            callplatonsym()
-            extsymiso=tradsym(foundsym("sym.lis"))
+            symlis =callplatonsym()
+            extsymiso=tradsym(foundsym(symlis))
             isomersextsym.append(copy.deepcopy(extsymiso))
         if len(isomersextsym)==1:
             sym=isomersextsym[0]
@@ -543,8 +543,8 @@ def symfromsmi(smiles):
     textfinal=textfinal.replace(" H"," F")
     file2 = open("sym.pdb","w")
     file2.write(textfinal)
-    callplatonsym()
-    symiso=tradsym(foundsym("sym.lis"))
+    symlis=callplatonsym()
+    symiso=tradsym(foundsym(symlis))
     
 def callplatonsym():
     try:
@@ -554,9 +554,10 @@ def callplatonsym():
         else:
             # Rendre exécutable
             os.chmod("./platon(1)", 0o755)
-            proc = sub.Popen(["platon (1)", "-o", "sym.pdb"], stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
+            proc = sub.Popen(["platon (1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
             # os.chmod("./platon(1)", 0o755)
-            output2, errors = proc.communicate(input="NONSYM\nexit\n")  
+            output2, errors = proc.communicate(input="NONSYM\nexit\n")
+            return output2
             # # Exécuter
             # result = sub.run(
             #     ["./platon(1)"],
@@ -591,7 +592,7 @@ def callplatonsym():
             with open("sym.lis", "r") as f:
                 contenu = f.read()
             return contenu
-    # return None
+    return None
     
     # newpath = "\mount\src\tmts_website2"
     # os.chdir(newpath)
@@ -1414,8 +1415,8 @@ def addnewkinetic(dicofreactions):
     file = open("sym.pdb","w")
     file.write(textfinal)
     file.close()
-    callplatonsym()
-    extsymtest=tradsym(foundsym("sym.lis"))
+    symlis=callplatonsym()
+    extsymtest=tradsym(foundsym(symlis))
 
     return updateddic, extsymtest
 
