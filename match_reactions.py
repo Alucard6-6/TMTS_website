@@ -1396,6 +1396,7 @@ def addnewkinetic(dicofreactions):
                 updateddic[reaction]=dicofreactions[reaction]
                 updateddic[reaction].append(arrhenius)
                 niso+=1
+                print(updateddic)
         elif typeofreaction=="BSCH":
             arrhenius=matchreaction_BS(dicofreactions[reaction][0][0],dicofreactions[reaction][1])
             print(arrhenius)
@@ -1479,6 +1480,7 @@ def addnewkinetic(dicofreactions):
     # # extsymtest=tradsym(foundsym(symlis))
     # callplatonsym()
     # extsymtest=tradsym(foundsym("sym.lis"))
+    
     return updateddic#, extsymtest
 
 RDLogger.DisableLog('rdApp.*') #this is only for avoiding RdKit warnings
