@@ -19,7 +19,7 @@ import ast
 from rdkit import RDLogger  
 import os 
 import subprocess as sub
-
+from rdkit.Chem import rdDistGeom
 
 def check_reaction(dic_reaction):
     
@@ -569,17 +569,6 @@ def callplatonsym():
             # return 
     except Exception as e:
         print(f"Exception : {e}")
-    
-    # if resultat_ok == 1:
-    # if True:
-    # #st.success("✅ Calcul terminé !")
-        
-    #     if os.path.exists("sym.lis"):
-    #         # Lire le fichier
-    #         with open("sym.lis", "r") as f:
-    #             contenu = f.read()
-            # return contenu
-    # return None
     
     # newpath = "\mount\src\tmts_website2"
     # os.chdir(newpath)
@@ -1391,9 +1380,26 @@ def addnewkinetic(dicofreactions):
     RMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rsmiles)))
     #nisoR=CalcNumAtomStereoCenters(RMol)+1
     m3R= Chem.AddHs(RMol)
-    AllChem.EmbedMolecule(m3R) 
-    AllChem.MMFFOptimizeMolecule(m3R)
-    rdmolfiles.MolToPDBFile(m3R,"sym.pdb",flavor=16)
+    ids = rdDistGeom.EmbedMultipleConfs(m3R, numConfs=30, randomSeed=42)
+    # AllChem.MMFFOptimizeMolecule(m3R, maxIters=500)
+    results = AllChem.MMFFOptimizeMoleculeConfs(m3R, maxIters=1000)
+
+
+    best_conf_id = -1
+    min_energy = float("inf")
+    energies = []
+    for i, (converged, energy) in enumerate(results):
+        energies.append(energy)
+        if converged == 0 and energy < min_energy:
+            min_energy = energy
+            best_conf_id = i
+
+    if best_conf_id == -1:
+        best_conf_id = 0
+
+    rdmolfiles.MolToPDBFile(
+        m3R,"sym.pdb", confId=best_conf_id, flavor=16
+    )
 
     file = open("sym.pdb","r")
     textinput = file.read()
