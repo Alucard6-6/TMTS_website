@@ -556,8 +556,8 @@ def callplatonsym():
             os.chmod("./platon(1)", 0o755)
             proc = sub.Popen(["platon(1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
             # os.chmod("./platon(1)", 0o755)
-            # output2, errors = proc.communicate(input="NONSYM\nexit\n")
-            # return output2
+            output2, errors = proc.communicate(input="NONSYM\nexit\n")
+            return output2
             # # Exécuter
             # result = sub.run(
             #     ["./platon(1)"],
@@ -592,7 +592,7 @@ def callplatonsym():
             with open("sym.lis", "r") as f:
                 contenu = f.read()
             return contenu
-    return None
+    # return None
     
     # newpath = "\mount\src\tmts_website2"
     # os.chdir(newpath)
