@@ -467,8 +467,8 @@ def refiningarrhenius(TMTSmodel,Rsmiles,Psmiles,path,cycle):
             textfinal=textfinal.replace(" H"," F")
             file = open("sym.pdb","w")
             file.write(textfinal)
-            callplatonsym()
-            extsymiso=tradsym(foundsym("sym.lis"))
+            symlis =callplatonsym()
+            extsymiso=tradsym(foundsym(symlis))
             isomersextsym.append(copy.deepcopy(extsymiso))
         if len(isomersextsym)==1:
             sym=isomersextsym[0]
@@ -543,8 +543,8 @@ def symfromsmi(smiles):
     textfinal=textfinal.replace(" H"," F")
     file2 = open("sym.pdb","w")
     file2.write(textfinal)
-    callplatonsym()
-    symiso=tradsym(foundsym("sym.lis"))
+    symlis=callplatonsym()
+    symiso=tradsym(foundsym(symlis))
     
 def callplatonsym():
     try:
@@ -591,7 +591,8 @@ def callplatonsym():
             # Lire le fichier
             with open("sym.lis", "r") as f:
                 contenu = f.read()
-    # return f
+            return contenu
+    return None
     
     # newpath = "\mount\src\tmts_website2"
     # os.chdir(newpath)
@@ -1414,8 +1415,8 @@ def addnewkinetic(dicofreactions):
     file = open("sym.pdb","w")
     file.write(textfinal)
     file.close()
-    callplatonsym()
-    extsymtest=tradsym(foundsym("sym.lis"))
+    symlis=callplatonsym()
+    extsymtest=tradsym(foundsym(symlis))
 
     return updateddic, extsymtest
 
