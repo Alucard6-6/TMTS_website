@@ -450,9 +450,10 @@ def matchreaction_iso(Rsmiles,Psmiles):
     for dic in Arrhenius:
         for reaction in dic.keys():
             reac, prod = reaction.split('>>')
-            i+=1
+            
             if Rsmiles == reac and Psmiles == prod:
-                Arrhenius =Arrhenius[i]
+                Arrhenius =Arrhenius[i:i+1]
+            i+=1
     print('arr', Arrhenius)
     return Arrhenius
 
