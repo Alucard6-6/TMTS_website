@@ -453,6 +453,7 @@ def matchreaction_iso(Rsmiles,Psmiles):
             i+=1
             if Rsmiles == reac and Psmiles == prod:
                 Arrhenius =Arrhenius[i:i+1]
+    print('arr', Arrhenius)
     return Arrhenius
 
 
@@ -1392,13 +1393,13 @@ def addnewkinetic(dicofreactions):
         typeofreaction=dicofreactions[reaction][2]
         if typeofreaction=="isoCH":
             arrhenius=matchreaction_iso(dicofreactions[reaction][0][0],dicofreactions[reaction][1][0])
+            print(arrhenius)
             if arrhenius!=None:
                 updateddic[reaction]=dicofreactions[reaction]
                 updateddic[reaction].append(arrhenius)
                 niso+=1
         elif typeofreaction=="BSCH":
             arrhenius=matchreaction_BS(dicofreactions[reaction][0][0],dicofreactions[reaction][1])
-            print(arrhenius)
             if arrhenius!=None:
                 nBS+=1
                 for model in arrhenius:
