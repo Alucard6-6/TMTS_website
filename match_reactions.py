@@ -563,16 +563,16 @@ def callplatonsym():
             # Rendre exécutable
             print("The platon executable has been found")
             os.chmod("./platon(1)", 0o755)
-            # proc = sub.Popen(["platon(1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
-            # output2, errors = proc.communicate(input="NONSYM\nexit\n")
+            proc = sub.Popen(["platon(1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, text=True)
+            output2, errors = proc.communicate(input="NONSYM\nexit\n")
             # return output2
             # # Exécuter
-            result = sub.run(
-                ["./platon(1)","sym.pdb"],
-                capture_output=True,
-                text=True,
-                timeout=60
-            )
+            # result = sub.run(
+            #     ["./platon(1)","sym.pdb"],
+            #     capture_output=True,
+            #     text=True,
+            #     timeout=60
+            # )
             # stdout, stderr = proc.communicate(input="\n")
             # if proc.returncode == 0:
             #     # st.success("Calculation complete !")
