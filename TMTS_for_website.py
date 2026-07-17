@@ -91,7 +91,7 @@ reaction_ok=check_reaction(dic_reaction)
 
 if run_match and reaction_ok:
     detailed_dic_reaction=cleanandclassify(dic_reaction)
-    arr_dic, extsymtest=addnewkinetic(detailed_dic_reaction)
+    arr_dic=addnewkinetic(detailed_dic_reaction)
     if len(arr_dic)>0:
         model=list(arr_dic["Target"][3][0].keys())[0]
         A,n,Ea=arr_dic["Target"][3][0][model][0],arr_dic["Target"][3][0][model][1],arr_dic["Target"][3][0][model][2]
@@ -103,13 +103,13 @@ if run_match and reaction_ok:
             st.write('n parameter:')    
             st.write('Activation energy:')
             #st.write('External symmetry:')
-            st.write('External symmetry (CCCCC):')
+            # st.write('External symmetry (CCCCC):')
         with res2:
             st.write(f'{A}')
             st.write(f'{n}')
             st.write(f'{Ea}')
             #st.write(f'{extsym}')
-            st.write(f'{extsymtest}')
+            # st.write(f'{extsymtest}')
     else:
         st.write("We are sorry, but this reaction is not covered by our database")
         why_not_covered=st.button('Want to know why?')
