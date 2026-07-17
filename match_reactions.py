@@ -561,6 +561,7 @@ def callplatonsym():
             print("The platon executable cannot be found")
         else:
             # Rendre exécutable
+            print("The platon executable has been found")
             os.chmod("./platon(1)", 0o755)
             proc = sub.Popen(["platon(1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
             # os.chmod("./platon(1)", 0o755)
