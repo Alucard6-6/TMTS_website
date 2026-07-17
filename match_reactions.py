@@ -434,10 +434,10 @@ def matchreaction_iso(Rsmiles,Psmiles):
     Arrhenius=[]
     for i in range(0,len(cs)):
         cycle=cs[i]
-        #print(cycle)
+        print(cycle)
         path=pathways[i]
         TMTSmodel,match= searchmatch(Rsmiles,Psmiles,cycle)
-        #print(TMTSmodel)
+        print(TMTSmodel)
         if match==1:
             Arrhenius.append(TMTSmodel)
         elif TMTSmodel!=None:
