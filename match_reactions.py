@@ -565,6 +565,7 @@ def callplatonsym():
             os.chmod("./platon(1)", 0o755)
             proc = sub.Popen(["platon(1)", "-o", "sym.pdb"],stdin=sub.PIPE, stdout=sub.PIPE, text=True)
             output2, errors = proc.communicate(input="NONSYM\nexit\n")
+            stdout, stderr = proc.communicate(input="\n")
             # return output2
             # # Exécuter
             # result = sub.run(
@@ -573,7 +574,7 @@ def callplatonsym():
             #     text=True,
             #     timeout=60
             # )
-            # stdout, stderr = proc.communicate(input="\n")
+    
             # if proc.returncode == 0:
             #     # st.success("Calculation complete !")
             #     resultat_ok = 1
