@@ -1389,6 +1389,7 @@ def addnewkinetic(dicofreactions):
                 niso+=1
         elif typeofreaction=="BSCH":
             arrhenius=matchreaction_BS(dicofreactions[reaction][0][0],dicofreactions[reaction][1])
+            print(arrhenius)
             if arrhenius!=None:
                 nBS+=1
                 for model in arrhenius:
