@@ -446,6 +446,7 @@ def matchreaction_iso(Rsmiles,Psmiles):
             Arrhenius.append(refiningarrhenius(TMTSmodel,Rsmiles,Psmiles,path,cycle))
         else:
             Arrhenius=None
+    print(Arrhenius)
     return Arrhenius
 
 
