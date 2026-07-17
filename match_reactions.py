@@ -565,10 +565,10 @@ def callplatonsym():
             #     text=True,
             #     timeout=60
             # )
-            stdout, stderr = proc.communicate(input="\n")
-            if proc.returncode == 0:
-                # st.success("Calculation complete !")
-                resultat_ok = 1
+            # stdout, stderr = proc.communicate(input="\n")
+            # if proc.returncode == 0:
+            #     # st.success("Calculation complete !")
+            #     resultat_ok = 1
                 # Lire les résultats
                 #if os.path.exists(RESULT_FILE):
                 #    with open(RESULT_FILE, "r") as f:
@@ -577,13 +577,14 @@ def callplatonsym():
                 #            f.read(),
                 #            RESULT_FILE
                 #        )
-            else:
-               print(f"Error in the calculation : {proc.stderr}")
+            # else:
+            #    print(f"Error in the calculation : {proc.stderr}")
                 
     except Exception as e:
         print(f"Exception : {e}")
     
-    if resultat_ok == 1:
+    # if resultat_ok == 1:
+    if True:
     #st.success("✅ Calcul terminé !")
         
         if os.path.exists("sym.lis"):
