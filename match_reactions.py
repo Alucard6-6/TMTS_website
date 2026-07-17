@@ -756,6 +756,10 @@ def searchmatch(Rsmi,Psmi,C):
     match=0
     for case in kinetic:
         [Rmodel,Pmodel]=case.split(">>")
+        if Rsmi == Rmodel and Psmi == Pmodel:
+            TMTSmodel[case] = kinetic[case]
+            match=1
+            return TMTSmodel, match
         RmodelMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rmodel)))
         PmodelMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Pmodel)))
         ntestR=len(Rmol.GetSubstructMatch(RmodelMol))
