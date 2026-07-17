@@ -553,7 +553,7 @@ def callplatonsym():
             print("The platon executable cannot be found")
         else:
             # Rendre exécutable
-            proc = sub.Popen(["platon (1)", "-o", "sym.pdb\n"],
+            proc = sub.Popen(["platon (1)", "-o", "sym.pdb"],
                               stdin=sub.PIPE, stdout=sub.PIPE, shell=True, text=True)
             # os.chmod("./platon(1)", 0o755)
             
@@ -564,7 +564,7 @@ def callplatonsym():
             #     text=True,
             #     timeout=60
             # )
-            
+            stdout, stderr = proc.communicate(input="\n")
             if proc.returncode == 0:
                 # st.success("Calculation complete !")
                 resultat_ok = 1
