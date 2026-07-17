@@ -580,7 +580,14 @@ def callplatonsym():
     except Exception as e:
         print(f"Exception : {e}")
     
-    
+    if resultat_ok == 1:
+    #st.success("✅ Calcul terminé !")
+        
+        if os.path.exists("sym.lis"):
+            # Lire le fichier
+            with open("sym.lis", "r") as f:
+                contenu = f.read()
+    return f
     
     # newpath = "\mount\src\tmts_website2"
     # os.chdir(newpath)
