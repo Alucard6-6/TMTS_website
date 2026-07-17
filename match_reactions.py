@@ -446,7 +446,13 @@ def matchreaction_iso(Rsmiles,Psmiles):
             Arrhenius.append(refiningarrhenius(TMTSmodel,Rsmiles,Psmiles,path,cycle))
         else:
             Arrhenius=None
-    print(Arrhenius)
+    i=0
+    for dic in Arrhenius:
+        for reaction in dic.keys():
+            reac, prod = reaction.split('>>')
+            i+=1
+            if Rsmiles == reac and Psmiles == prod:
+                Arrhenius =Arrhenius[i:i+1]
     return Arrhenius
 
 
@@ -756,10 +762,6 @@ def searchmatch(Rsmi,Psmi,C):
     match=0
     for case in kinetic:
         [Rmodel,Pmodel]=case.split(">>")
-        if Rsmi == Rmodel and Psmi == Pmodel:
-            TMTSmodel[case] = kinetic[case]
-            match=1
-            return TMTSmodel, match
         RmodelMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Rmodel)))
         PmodelMol=Chem.MolFromSmiles(Chem.MolToSmiles(Chem.MolFromSmiles(Pmodel)))
         ntestR=len(Rmol.GetSubstructMatch(RmodelMol))
